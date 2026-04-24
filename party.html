@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قاعات الأفق | للأفراح والمناسبات</title>
+    <!-- استدعاء خط Tajawal العصري -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <!-- استدعاء مكتبة الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* 
+         * نظام الألوان الجديد (Modern Teal & White)
+         */
+        :root {
+            --primary: #006064;       /* تركواز غامق (Royal Teal) */
+            --primary-light: #00bcd4;  /* تركواز فاتح */
+            --secondary: #eceff1;      /* رمادي مزرق فاتح جداً للخلفيات */
+            --accent: #ff7043;        /* برتقالي ناعم للأزرار */
+            --text-dark: #263238;     /* رمادي غامق للنص */
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* الأزرار */
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 700;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 96, 100, 0.3);
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 96, 100, 0.4);
+        }
+
+        /* الهيدر */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover { color: var(--primary-light); }
+
+        /* الهيرو (Hero) */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* الأقسام */
+        section { padding: 100px 0; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .section-header span {
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* المميزات */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-box {
+            background: var(--white);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-light);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        /* القاعات */
+        .halls-section { background: var(--secondary); }
+
+        .halls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .hall-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.4s;
+        }
+
+        .hall-card:hover { transform: scale(1.02); }
+
+        .hall-img { height: 300px; overflow: hidden; }
+        .hall-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .hall-card:hover .hall-img img { transform: scale(1.1); }
+
+        .hall-info { padding: 30px; }
+        .hall-info h3 { font-size: 1.8rem; color: var(--primary); margin-bottom: 10px; }
+        .hall-price { 
+            font-size: 1.6rem; 
+            color: var(--accent); 
+            font-weight: 800; 
+            margin: 15px 0; 
+            display: block; 
+        }
+        .hall-details {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* قسم الاستشارة (Booking) */
+        .consultation-container {
+            background: var(--white);
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 6px solid var(--primary);
+        }
+
+        .consultation-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group { margin-bottom: 10px; }
+        .form-group.full { grid-column: span 2; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-light);
+            outline: none;
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            background: var(--primary);
+            color: var(--white);
+            padding: 18px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover { background: var(--primary-light); }
+
+        /* الفوتر */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+        .footer-logo { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
+        .socials a {
+            display: inline-flex;
+            width: 45px; height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            align-items: center; justify-content: center;
+            margin: 0 10px;
+            color: var(--white);
+            transition: 0.3s;
+        }
+        .socials a:hover { background: var(--accent); transform: translateY(-5px); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .consultation-form { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">قاعات <span>الأفق</span></div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#halls">القاعات</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#consultation">حجز استشارة</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قسم الهيرو -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>احتفل بأرقى المعايير<br>في قاعات الأفق</h1>
+            <p>نقدم تجربة احتفالية فريدة بدءاً من التصميم وصولاً إلى أرقى الخدمات.</p>
+            <a href="#consultation" class="btn">احجز استشارتك الآن</a>
+        </div>
+    </section>
+
+    <!-- قسم المميزات -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>خدماتنا</h2>
+                <span></span>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-glass-cheers feature-icon"></i>
+                    <h3>تنظيم الأفراح</h3>
+                    <p>تنسيق كامل للحفل بداية من الديكور وحتى انتهاء الحفل.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-utensils feature-icon"></i>
+                    <h3>بوفيه مفتوح</h3>
+                    <p>مجموعة مختارة من أشهى المأكولات العالمية والمحلية.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-camera feature-icon"></i>
+                    <h3>تصوير احترافي</h3>
+                    <p>خدمات تصوير وفيديو لتوثيق أجمل لحظاتك.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم القاعات -->
+    <section class="halls-section" id="halls">
+        <div class="container">
+            <div class="section-header">
+                <h2>قاعاتنا</h2>
+                <span></span>
+            </div>
+            <div class="halls-grid">
+                <!-- قاعة 1 -->
+                <div class="hall-card">
+                    <div class="hall-img">
+                        <img src="https://images.unsplash.com/photo-1519225466159-9de5ad52e93f?w=600&q=80" alt="قاعة ملكية">
+                    </div>
+                    <div class="hall-info">
+                        <h3>القاعة الكبرى</h3>
+                        <div class="hall-price">تبدأ من 70,000 ج.م</div>
+                        <p class="hall-details">سعة 1000 شخص • إضاءة متحركة • كوشة عروس فاخرة</p>
+                    </div>
+                </div>
+                <!-- قاعة 2 -->
+                <div class="hall-card">
+                    <div class="hall-img">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80" alt="قاعة أفراح">
+                    </div>
+                    <div class="hall-info">
+                        <h3>قاعة السلام</h3>
+                        <div class="hall-price">تبدأ من 55,000 ج.م</div>
+                        <p class="hall-details">سعة 600 شخص • ديكور مودرن • خدمة VIP</p>
+                    </div>
+                </div>
+                <!-- قاعة 3 -->
+                <div class="hall-card">
+                    <div class="hall-img">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="قاعة عشاء">
+                    </div>
+                    <div class="hall-info">
+                        <h3>قاعة النور</h3>
+                        <div class="hall-price">تبدأ من 50,000 ج.م</div>
+                        <p class="hall-details">سعة 300 شخص • مناسبة للخطوبة والعشاء</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاستشارة -->
+    <section id="consultation">
+        <div class="container">
+            <div class="section-header">
+                <h2>حجز استشارة</h2>
+                <span></span>
+            </div>
+            
+            <div class="consultation-container">
+                <p style="text-align: center; margin-bottom: 30px; color: #666;">
+                    اترك بياناتك وسيقوم فريق المبيعات بالتواصل معك لمناقشة التفاصيل والعرض.
+                </p>
+                <form id="consultForm">
+                    <div class="consultation-form">
+                        <div class="form-group">
+                            <label>الاسم بالكامل</label>
+                            <input type="text" id="c_name" class="form-control" placeholder="الاسم" required>
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="c_phone" class="form-control" placeholder="01xxxxxxxxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label>البريد الإلكتروني (اختياري)</label>
+                            <input type="email" id="c_email" class="form-control" placeholder="example@mail.com">
+                        </div>
+                        <div class="form-group">
+                            <label>نوع المناسبة</label>
+                            <select id="c_type" class="form-control">
+                                <option>زفاف</option>
+                                <option>خطوبة</option>
+                                <option>عيد ميلاد</option>
+                                <option>حفلة عشاء</option>
+                            </select>
+                        </div>
+                        <div class="form-group full">
+                            <label>تفاصيل الاستشارة</label>
+                            <textarea id="c_notes" class="form-control" rows="4" placeholder="اذكر التاريخ المتوقع، عدد الأفراد، وأي طلبات خاصة..."></textarea>
+                        </div>
+                        <button type="button" onclick="sendConsultation()" class="submit-btn">
+                            <i class="fab fa-whatsapp"></i> إرسال طلب الاستشارة
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">قاعات <span>الأفق</span></div>
+            <p style="opacity: 0.8; margin-bottom: 20px;">القاهرة - شارع عباس العقاد - مول النيل</p>
+            <div class="socials">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.5;">&copy; 2024 قاعات الأفق</p>
+        </div>
+    </footer>
+
+    <!-- الجافاسكريبت -->
+    <script>
+        // رقم الواتساب
+        const WHATSAPP_NUMBER = "201000000000";
+
+        function sendConsultation() {
+            const name = document.getElementById('c_name').value;
+            const phone = document.getElementById('c_phone').value;
+            const email = document.getElementById('c_email').value;
+            const type = document.getElementById('c_type').value;
+            const notes = document.getElementById('c_notes').value;
+
+            if(!name || !phone) {
+                alert("يرجى كتابة الاسم ورقم الهاتف");
+                return;
+            }
+
+            let message = `*طلب استشارة جديد 📝*%0a%0a`;
+            message += `👤 *الاسم:* ${name}%0a`;
+            message += `📱 *الهاتف:* ${phone}%0a`;
+            message += `✉️ *البريد:* ${email}%0a`;
+            message += `🎉 *المناسبة:* ${type}%0a`;
+            message += `📝 *التفاصيل:* ${notes}%0a`;
+
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
